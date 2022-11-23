@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="e3-gateway" default="dist" basedir="../..">
+    <property name="tools.dir" value="buildtools"/>
+    <property name="tools.conf.dir" value="${tools.dir}/conf"/>
+    <property name="tools.lib.dir" value="${tools.dir}/lib"/>
+    <property file="${tools.conf.dir}/build.properties"/>
+    <property name="root.dir" value="${basedir}"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="dist.dir" value="${root.dir}/dist"/>
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="GatewayEJB/ejbModule"/>
+    <property name="servlet.dir" value="GatewayWEB/JavaSource"/>
+    <property name="webroot.dir" value="GatewayWEB/WebContent"/>
+    <property name="scripts.dir" value="scripts"/>
+    <property name="props.dir" value="properties"/>
+    <property name="rules.dir" value="rules"/>
+    <property environment="env"/>
+    <!-- standard compile flags/options -->
+    <property name="javac.debug" value="${env.E3_DEBUG}"/>
+    <property name="javac.debuglevel" value="lines,source"/>
+    <property name="javac.deprecation" value="off"/>
+    <property name="javac.optimize" value="on"/>
+    <property name="build.compiler" value="modern"/>
+    <property name="build.compiler.name" value="modern"/>
+
+    <echo message="Using ${ant.version}"/>
+    <!-- ======================================================================= -->
+    <!-- MISCELLANEOUS TARGETS -->
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp>
+            <format property="DATETIMESTAMP" pattern="yyyyMMdd-HH.mm.ss"/>
+        </tstamp>
+        <!--property name="l" value="REL_UNKNOWN-${DATETIMESTAMP}"/-->
+        <property name="l" value="REL_${svnBranch}.0-${buildTimestamp}"/>
+        <property name="distfile_p2" value="GatewayOld.Full.tar"/>
+        <!--condition property="ejbdeploy.sc" value="ejbdeploy.sh">
+            <os family="unix"/>
+          </condition>
+        <condition property="ejbdeploy.sc" value="ejbdeploy.bat">
+            <os family="windows"/>
+          </condition-->
+        <!--echo message="EJB deployment script: ${env.WSAD_HOME}/bin/${ejbdeploy.sc}" /-->
+    </target>
+    <path id="classpath.id">
+        <fileset dir="${tools.lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${root.dir}">
+            <include name="**/lib/OROMatcher.zip"/>
+        </fileset>
+    </path>
+    <property name="compile.classpath" refid="classpath.id"/>
+    <!-- Not used currently
+    <target name="count" description="Counts the number of source files and the number of lines of code">
+        <delete file="${linectr}"/>
+        <echo message="LineCounter output going to ${linectr}"/>
+        <java classname="LineCounter" dir="${basedir}/.." output="${linectr}" fork="true">
+            <classpath>
+                <fileset dir="${tools.lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+            <arg path="${basedir}/../"/>
+        </java>
+    </target>
+    -->
+    <!-- ======================================================================= -->
+    <!-- COMPILATION TARGETS -->
+    <target name="compile.init" depends="init">
+        <echo message="Debug: ${javac.debug}"/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}"/>
+    </target>
+    <target name="compile" depends="compile.init">
+        <javac destdir="${build.dir}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"
+               optimize="${javac.optimize}" deprecation="${javac.deprecation}" classpath="${compile.classpath}"
+               target="1.7" source="1.7" memoryMaximumSize="160m" fork="yes" nowarn="on">
+            <src path="${src.dir}"/>
+            <src path="${servlet.dir}"/>
+            <exclude name="**/*Test.java"/>
+        </javac>
+        <echo message="${l}" file="${build.dir}/ReleaseLabel.txt"/>
+    </target>
+    <!-- ======================================================================= -->
+    <!-- DISTRIBUTION TARGETS -->
+    <target name="dist.init" depends="init">
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    <target name="jar.init" depends="compile.init, dist.init"/>
+    <target name="jars"
+            depends="compile, jar.base, jar.cas, jar.ultimate, jar.jms, jar.gwmon, jar.gw, jar.gw301, jar.ndmutables"
+            description="Creates jar files ready for distribution"/>
+    <target name="jar.base" depends="jar.init">
+        <jar destfile="${dist.dir}/Base.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhc/ebill/base/**/*.class"/>
+            <include name="com/uhc/eems/common/domain/**/*.class"/>
+        </jar>
+    </target>
+    <target name="jar.cas" depends="jar.init">
+        <jar destfile="${dist.dir}/CAS.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhc/ebill/arch/**/*.class"/>
+        </jar>
+    </target>
+    <target name="jar.jms" depends="jar.init">
+        <jar destfile="${dist.dir}/JMSFramework.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhg/uht/**/*.class"/>
+        </jar>
+    </target>
+    <target name="jar.ultimate" depends="jar.init">
+        <jar destfile="${dist.dir}/Ultimate.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="org/grnds/**/*.class"/>
+        </jar>
+    </target>
+    <target name="jar.gwmon" depends="jar.init">
+        <jar destfile="${dist.dir}/GatewayMonitor.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhc/ebill/gateway/productionsupport/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/webutil/*.class"/>
+            <include name="com/uhg/utils/StringUtil.class"/>
+        </jar>
+    </target>
+    <target name="jar.gw" depends="jar.init, compile">
+        <jar destfile="${dist.dir}/Gateway.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhc/ebill/gateway/**/*.class"/>
+            <include name="com/uhc/eems/common/**/*.class"/>
+            <include name="com/uhg/**/*.class"/>
+            <exclude name="com/uhg/uht/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/**"/>
+            <exclude name="com/uhc/ebill/gateway/productionsupport/**"/>
+            <exclude name="com/uhc/ebill/gateway/**/*Servlet.class"/>
+        </jar>
+    </target>
+    <target name="jar.gw301" depends="jar.init">
+        <jar destfile="${dist.dir}/Gateway301.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="com/uhc/ebill/gateway301/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway301/server/**"/>
+        </jar>
+    </target>
+    <target name="jar.ndmutables" depends="jar.init">
+        <mkdir dir="${build.dir}/properties/com/blazesoft/objects/java"/>
+        <copy todir="${build.dir}/properties/com/blazesoft/objects/java" filtering="true" overwrite="true">
+            <fileset dir="${props.dir}">
+                <include name="NdMutableJavaValueClasses.properties"/>
+            </fileset>
+        </copy>
+        <fixcrlf srcdir="${build.dir}/properties/com/blazesoft/objects/java" eol="lf"/>
+        <jar destfile="${dist.dir}/NdMutableJavaValueClassesProperties.jar" basedir="${build.dir}/properties">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="Property file for AdvCommon.jar">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <include name="**/NdMutableJavaValueClasses.properties"/>
+        </jar>
+        <delete dir="${build.dir}/properties/com"/>
+    </target>
+    <!--target name="jar.full" depends="jar.init">
+        <jar destfile="${build.dir}/full.jar" basedir="${build.dir}" includesfile="${tools.conf.dir}/${confdir}/ejb-includes.txt">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <exclude name="**/*.jar"/>
+            <exclude name="temp"/>
+            <metainf dir="${tools.conf.dir}/${confdir}/META-INF/" excludes="**/application.xml"/>
+        </jar>
+    </target-->
+
+
+    <target name="jar.1NRT" depends="jar.init">
+        <!--	<copy todir="${build.dir}" filtering="true" overwrite="true">
+                <fileset dir="${root.dir}/GatewayEJB/EJBClasses/1NRTEJB">
+                        <include name="**/*.class"/>
+                </fileset>
+            </copy> -->
+        <jar destfile="${build.dir}/Gateway1NRTEJB.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <metainf dir="${build.dir}/../buildtools/conf/Gateway1NRT/META-INF"/>
+            <include name="com/uhc/ebill/gateway/server/isinboundfinished/IsInboundFinished.class"/>
+            <include name="com/uhc/ebill/gateway/server/isinboundfinished/IsInboundFinishedBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/isinboundfinished/IsInboundFinishedHome.class"/>
+            <include name="com/uhc/ebill/gateway/server/postprocessing/PostProcessing.class"/>
+            <include name="com/uhc/ebill/gateway/server/postprocessing/PostProcessingBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/postprocessing/PostProcessingHome.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/postprocessing/PostProcessingMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/processceserrors/ProcessCESErrors.class"/>
+            <include name="com/uhc/ebill/gateway/server/processceserrors/ProcessCESErrorsBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/processceserrors/ProcessCESErrorsHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/readytoprocess/ReadyToProcess.class"/>
+            <include name="com/uhc/ebill/gateway/server/readytoprocess/ReadyToProcessBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/readytoprocess/ReadyToProcessHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/storestructurefilelocation/StoreStructureFileLocation.class"/>
+            <include
+                    name="com/uhc/ebill/gateway/server/storestructurefilelocation/StoreStructureFileLocationBean.class"/>
+            <include
+                    name="com/uhc/ebill/gateway/server/storestructurefilelocation/StoreStructureFileLocationHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/storesubscriber/StoreSubscriber.class"/>
+            <include name="com/uhc/ebill/gateway/server/storesubscriber/StoreSubscriberBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/storesubscriber/StoreSubscriberHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/storetransaction/StoreTransaction.class"/>
+            <include name="com/uhc/ebill/gateway/server/storetransaction/StoreTransactionBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/storetransaction/StoreTransactionHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/submissioninformation/SubmissionInformation.class"/>
+            <include name="com/uhc/ebill/gateway/server/submissioninformation/SubmissionInformationBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/submissioninformation/SubmissionInformationHome.class"/>
+
+            <include name="com/uhc/ebill/gateway/server/workunitstaging/WorkUnitStaging.class"/>
+            <include name="com/uhc/ebill/gateway/server/workunitstaging/WorkUnitStagingBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/workunitstaging/WorkUnitStagingHome.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/workunitstaging/WorkUnitStagingMDBean.class"/>
+            <!--	<include name="com/ibm/ejs/**/*.class"/>
+                <include name="com/ibm/websphere/**/*.class"/>
+                <include name="org/omg/stub/javax/**/*.class"/> -->
+        </jar>
+    </target>
+
+
+    <target name="jar.1EJB" depends="jar.init">
+        <copy todir="${build.dir}" filtering="true" overwrite="true">
+            <fileset dir="${root.dir}/GatewayEJB/EJBClasses/1EJB">
+                <include name="**/*.class"/>
+            </fileset>
+        </copy>
+        <jar destfile="${build.dir}/Gateway1EJB.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <metainf dir="${build.dir}/../buildtools/conf/Gateway1/META-INF"/>
+            <include name="com/uhc/ebill/gateway/business/Coverage$_COVERAGE_TYPE_CODES_Stub.class"/>
+            <include name="com/uhc/ebill/gateway/business/Provider$_PCP_INDICATOR_Stub.class"/>
+            <include name="com/uhc/ebill/gateway/server/autocancelbulkload/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/autocancelbulkload/AutoCancelBulkLoadMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/bulkloadwus/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/bulkloadwus/BulkLoadWUSMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/isinboundfinished/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/postprocessing/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/postprocessing/PostProcessingMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/priorityworkunit/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/processceserrors/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/progressstatus/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/progressstatus/ProgressStatusMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/readytoprocess/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/sendoutboundfamilygroup/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/sendoutboundfamilygroup/SendOutboundFamilyGroupMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/server/storestructurefilelocation/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/storesubscriber/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/storetransaction/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/submissioninformation/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/transactionsetbulkload/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/workunitstaging/**/*.class"/>
+            <exclude name="com/uhc/ebill/gateway/server/workunitstaging/WorkUnitStagingMDBean.class"/>
+            <include name="com/uhc/ebill/gateway/business/Coverage$_COVERAGE_TYPE_CODES_Stub.class"/>
+            <include name="com/uhc/ebill/gateway/business/Provider$_PCP_INDICATOR_Stub.class"/>
+            <include name="com/ibm/ejs/**/*.class"/>
+            <include name="com/ibm/websphere/**/*.class"/>
+            <include name="org/omg/stub/**/*.class"/>
+        </jar>
+    </target>
+
+
+    <target name="jar.2NRT" depends="jar.init">
+        <copy todir="${build.dir}" filtering="true" overwrite="true">
+            <fileset dir="${root.dir}/GatewayEJB/EJBClasses/2NRTEJB">
+                <include name="**/*.class"/>
+            </fileset>
+        </copy>
+        <jar destfile="${build.dir}/Gateway2NRTEJB.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <metainf dir="${build.dir}/../buildtools/conf/Gateway2NRT/META-INF"/>
+            <include name="com/uhc/ebill/gateway/server/derivationvaluerules/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/fieldvalidationrules/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/processfamilygroup/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/business/Coverage$_COVERAGE_TYPE_CODES_Stub.class"/>
+            <include name="com/uhc/ebill/gateway/business/Provider$_PCP_INDICATOR_Stub.class"/>
+            <include name="com/ibm/ejs/**/*.class"/>
+            <include name="com/ibm/websphere/**/*.class"/>
+            <include name="org/omg/stub/**/*.class"/>
+        </jar>
+    </target>
+
+    <target name="jar.2EJB" depends="jar.init">
+        <copy todir="${build.dir}" filtering="true" overwrite="true">
+            <fileset dir="${root.dir}/GatewayEJB/EJBClasses/2EJB">
+                <include name="**/*.class"/>
+            </fileset>
+        </copy>
+        <jar destfile="${build.dir}/Gateway2EJB.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <metainf dir="${build.dir}/../buildtools/conf/Gateway2/META-INF"/>
+            <include name="com/uhc/ebill/gateway/server/derivationvaluerules/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/fieldvalidationrules/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/server/processfamilygroup/**/*.class"/>
+            <include name="com/uhc/ebill/gateway/business/Coverage$_COVERAGE_TYPE_CODES_Stub.class"/>
+            <include name="com/uhc/ebill/gateway/business/Provider$_PCP_INDICATOR_Stub.class"/>
+            <include name="com/ibm/ejs/**/*.class"/>
+            <include name="com/ibm/websphere/**/*.class"/>
+            <include name="org/omg/stub/**/*.class"/>
+        </jar>
+    </target>
+
+
+    <target name="gw1ejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="Gateway1"/>
+        </antcall>
+    </target>
+    <target name="gw2ejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="Gateway2"/>
+        </antcall>
+    </target>
+    <target name="nrt1ejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="Gateway1NRT"/>
+        </antcall>
+    </target>
+    <target name="nrt2ejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="Gateway2NRT"/>
+        </antcall>
+    </target>
+    <!--target name="gobeejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="GO"/>
+        </antcall>
+    </target>
+    <target name="cpbeejbjar">
+        <antcall target="genstubs">
+            <param name="destfile" value="CP"/>
+        </antcall>
+    </target-->
+    <!--target name="genstubs">
+        <antcall target="jar.full">
+            <param name="confdir" value="${destfile}"/>
+        </antcall>
+        <mkdir dir="${build.dir}/temp/${destfile}"/>
+        <exec executable="${env.WSAD_HOME}/bin/${ejbdeploy.sc}">
+            <arg path="${build.dir}/full.jar"/>
+            <arg path="${build.dir}/temp/${destfile}"/>
+            <arg path="${build.dir}/${destfile}EJB.jar"/>
+            <arg line="-cp ${dist.dir}/Gateway.jar;${dist.dir}/Base.jar;${dist.dir}/CAS.jar;${dist.dir}/Ultimate.jar;${dist.dir}/Gateway301.jar;${dist.dir}/JMSFramework.jar;${lib.dir}/Log4J.jar;${lib.dir}/AdvCommon.jar;${lib.dir}/Advisor.jar;${lib.dir}/AdvisorSvr.jar;${lib.dir}/com.ibm.mq.jar;${lib.dir}/JDOM.jar;${lib.dir}/Xerces.jar"/>
+            <arg line="-novalidate -nowarn -quiet"/>
+        </exec>
+    </target-->
+    <!-- replacement of old genstubs. This uses incremental build strategy, much faster -->
+    <target name="genstubs" depends="jar.init">
+        <property name="websphere.home" value="${env.WSAD_HOME}/${env.WSAD_RUNTIMES}"/>
+        <ejbjar srcdir="${root.dir}/${build.dir}"
+                descriptordir="${root.dir}/${tools.conf.dir}/${destfile}/META-INF"
+                basejarname="${destfile}"
+                genericjarsuffix="true"
+                dependency="super">
+            <websphere ejbdeploy="true" novalidate="true" nowarn="true" quiet="true"
+                       tempdir="${root.dir}/${build.dir}/temp"
+                       destdir="${root.dir}/${build.dir}"
+                       suffix="EJB.jar"
+            > <!--useCurrentJdk="true"!-->
+                <wasclasspath>
+                    <pathelement location="${env.WSAD_HOME}/${env.WSAD_RUNTIMES}/../../bin/batch.jar"/>
+                </wasclasspath>
+                <!--wasextensionspath>
+                    <pathelement path = "${env.WSAD_HOME}/${env.WSAD_RUNTIMES}/java/lib"/>
+                    <pathelement path = "${env.WSAD_HOME}/${env.WSAD_RUNTIMES}/lib"/>
+                    <pathelement path = "${env.WSAD_HOME}/${env.WSAD_RUNTIMES}/java/jre/lib/ext"/>
+                </wasextensionspath-->
+                <classpath>
+                    <fileset dir="${dist.dir}">
+                        <include name="**/*.jar"/>
+                    </fileset>
+                    <fileset dir="${lib.dir}">
+                        <include name="**/*.jar"/>
+                    </fileset>
+                </classpath>
+            </websphere>
+            <dtd publicId="-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN"
+                 location="./${tools.dir}/dtd/ejb-jar_2_0.dtd"/>
+            <include name="ejb-jar.xml"/>
+        </ejbjar>
+    </target>
+    <target name="war" depends="jar.init">
+        <war destfile="${build.dir}/${destfile}.war" webxml="${tools.conf.dir}/${confdir}/WEB-INF/web.xml">
+            <classes dir="${build.dir}" includesfile="${tools.conf.dir}/${confdir}/war-includes.txt"/>
+            <webinf dir="${tools.conf.dir}/${confdir}/WEB-INF" excludes="**/web.xml"/>
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="ReleaseLabel.txt"/>
+            </fileset>
+            <fileset dir="${webroot.dir}">
+                <include name="**/*.html"/>
+            </fileset>
+        </war>
+    </target>
+    <!--target name="war.go">
+        <antcall target="war">
+            <param name="destfile" value="GoJmsListener"/>
+            <param name="confdir" value="GO"/>
+        </antcall>
+    </target>
+    <target name="war.cp">
+        <antcall target="war">
+            <param name="destfile" value="CpJmsListener"/>
+            <param name="confdir" value="CP"/>
+        </antcall>
+    </target-->
+    <target name="war.gw1">
+        <antcall target="war">
+            <param name="destfile" value="Gateway1Servlets"/>
+            <param name="confdir" value="Gateway1"/>
+        </antcall>
+    </target>
+    <target name="war.gw2">
+        <antcall target="war">
+            <param name="destfile" value="Gateway2Servlets"/>
+            <param name="confdir" value="Gateway2"/>
+        </antcall>
+    </target>
+    <target name="war.nrt1">
+        <antcall target="war">
+            <param name="destfile" value="Gateway1NRTServlets"/>
+            <param name="confdir" value="Gateway1NRT"/>
+        </antcall>
+    </target>
+    <target name="war.nrt2">
+        <antcall target="war">
+            <param name="destfile" value="Gateway2NRTServlets"/>
+            <param name="confdir" value="Gateway2NRT"/>
+        </antcall>
+    </target>
+    <target name="war.gwmon">
+        <antcall target="war">
+            <param name="destfile" value="GatewayMonitorWeb"/>
+            <param name="confdir" value="gwmon"/>
+        </antcall>
+    </target>
+    <!--target name="war.cosmos">
+        <antcall target="war">
+            <param name="destfile" value="CosomsJmsListener"/>
+            <param name="confdir" value="cosmos"/>
+        </antcall>
+    </target-->
+    <target name="ears"
+            depends="jar.1EJB, jar.1NRT, jar.2EJB, jar.2NRT, war.gw1, war.gw2, war.nrt1, war.nrt2, war.gwmon, ear.gw1, ear.gw2, ear.nrt1, ear.nrt2, ear.gwmon"
+            description="Creates ear files ready for distribution"/>
+    <target name="ear.gen" depends="dist.init">
+        <ear destfile="${dist.dir}/${destfile}.ear" appxml="${tools.conf.dir}/${confdir}/META-INF/application.xml"
+             excludes="**/application.xml" update="true">
+            <fileset dir="${build.dir}" includes="${warname}.war,${confdir}EJB.jar"/>
+            <manifest>
+                <attribute name="Built-By" value="${env.USERNAME}"/>
+                <section name="common">
+                    <attribute name="Implementation-Version" value="${l}"/>
+                </section>
+            </manifest>
+        </ear>
+    </target>
+    <target name="ear.gw1">
+        <antcall target="ear.gen">
+            <param name="destfile" value="Gateway1EAR"/>
+            <param name="confdir" value="Gateway1"/>
+            <param name="warname" value="Gateway1Servlets"/>
+        </antcall>
+    </target>
+    <target name="ear.gw2">
+        <antcall target="ear.gen">
+            <param name="destfile" value="Gateway2EAR"/>
+            <param name="confdir" value="Gateway2"/>
+            <param name="warname" value="Gateway2Servlets"/>
+        </antcall>
+    </target>
+    <target name="ear.nrt1">
+        <antcall target="ear.gen">
+            <param name="destfile" value="Gateway1NRTEAR"/>
+            <param name="confdir" value="Gateway1NRT"/>
+            <param name="warname" value="Gateway1NRTServlets"/>
+        </antcall>
+    </target>
+    <target name="ear.nrt2">
+        <antcall target="ear.gen">
+            <param name="destfile" value="Gateway2NRTEAR"/>
+            <param name="confdir" value="Gateway2NRT"/>
+            <param name="warname" value="Gateway2NRTServlets"/>
+        </antcall>
+    </target>
+    <!--target name="ear.go">
+        <antcall target="ear.gen">
+            <param name="destfile" value="GOBackend"/>
+            <param name="confdir" value="GO"/>
+            <param name="warname" value="GoJmsListener"/>
+        </antcall>
+    </target>
+    <target name="ear.cp">
+        <antcall target="ear.gen">
+            <param name="destfile" value="CPBackend"/>
+            <param name="confdir" value="CP"/>
+            <param name="warname" value="CpJmsListener"/>
+        </antcall>
+    </target-->
+    <target name="ear.gwmon">
+        <antcall target="ear.gen">
+            <param name="destfile" value="GatewayMonitorEAR"/>
+            <param name="confdir" value="gwmon"/>
+            <param name="warname" value="GatewayMonitorWeb"/>
+        </antcall>
+    </target>
+    <!--target name="ear.cosmos">
+        <antcall target="ear.gen">
+            <param name="destfile" value="GOBackend"/>
+            <param name="confdir" value="cosmos"/>
+            <param name="warname" value="CosomsJmsListener"/>
+        </antcall>
+    </target-->
+    <target name="dist" depends="dist.clean, dist.init, jars, ears, genProps, dist.rules, dist.scripts">
+        <tar destfile="${dist.dir}/${l}-gateway.tar">
+            <tarfileset dir="${dist.dir}" prefix="jars">
+                <include name="*.jar"/>
+            </tarfileset>
+            <tarfileset dir="${dist.dir}" prefix="EARs">
+                <include name="*.ear"/>
+            </tarfileset>
+            <tarfileset dir="${lib.dir}" prefix="jars">
+                <!--include name="${include_lib}"/-->
+                <include name="*.jar"/>
+                <include name="**/OROMatcher.zip"/>
+                <!--exclude name=".*"/-->
+            </tarfileset>
+        </tar>
+        <tar destfile="${dist.dir}/${l}-${distfile_p2}">
+            <tarfileset dir="${dist.dir}">
+                <include name="*.tar"/>
+            </tarfileset>
+        </tar>
+        <delete>
+            <fileset dir="${dist.dir}">
+                <exclude name="*${distfile_p2}"/>
+            </fileset>
+        </delete>
+    </target>
+    <target name="dist.rules" depends="dist.init">
+        <tar destfile="${dist.dir}/${l}-rules.tar">
+            <tarfileset dir="${rules.dir}" prefix="rules"/>
+        </tar>
+    </target>
+    <target name="dist.scripts" depends="dist.init">
+        <mkdir dir="${build.dir}/${scripts.dir}"/>
+        <fixcrlf srcdir="${scripts.dir}" destDir="${build.dir}/${scripts.dir}" eol="lf"/>
+        <tar destfile="${dist.dir}/${l}-scripts.tar">
+            <tarfileset dir="${build.dir}/${scripts.dir}" prefix="scripts"/>
+        </tar>
+    </target>
+    <target name="replaceTokens" depends="compile.init">
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="at"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="st"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="sy1"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="ms"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="bf"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="uat1"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pt-apsrs4508"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pt-apsrs4509"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="ad-apsp0282"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="ad-apsp0298"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pd-apsp0281"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pd-apsp0296"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="ad-apsrp8494"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="ad-apsrp8495"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pd-apsrp8497"/>
+        </antcall>
+        <antcall target="replaceTokensForEnv">
+            <param name="filterEnv" value="pd-apsrp8496"/>
+        </antcall>
+    </target>
+    <target name="replaceTokensForEnv">
+        <filter filtersfile="${tools.conf.dir}/common${isNrt}.properties"/>
+        <filter filtersfile="${tools.conf.dir}/${filterEnv}${isNrt}.properties"/>
+        <copy todir="${build.dir}/${nrtFolder}properties/${filterEnv}" filtering="true" overwrite="true">
+            <fileset dir="${props.dir}">
+                <include name="**/*"/>
+                <exclude name="**/*.keep"/>
+                <exclude name="NdMutableJavaValueClasses*"/>
+            </fileset>
+        </copy>
+        <fixcrlf srcdir="${build.dir}/${nrtFolder}properties/${filterEnv}" eol="lf"/>
+    </target>
+    <target name="prepareProps">
+        <antcall target="replaceTokens">
+            <param name="isNrt" value=""/>
+            <param name="nrtFolder" value=""/>
+        </antcall>
+    </target>
+    <target name="prepareNRTProps">
+        <antcall target="replaceTokens">
+            <param name="isNrt" value="-nrt"/>
+            <param name="nrtFolder" value="nrt/"/>
+        </antcall>
+    </target>
+    <target name="genProps" depends="dist.init, prepareProps, prepareNRTProps">
+        <tar destfile="${dist.dir}/${l}-properties.tar">
+            <!--tarfileset dir="${props.dir}" prefix="properties"/-->
+            <!--tarfileset dir="${props.dir}" prefix="nrt/properties"/-->
+            <tarfileset dir="${build.dir}/properties" prefix="properties"/>
+            <tarfileset dir="${build.dir}/nrt" prefix="nrt"/>
+        </tar>
+    </target>
+    <!-- ======================================================================= -->
+    <!-- CLEAN TARGETS -->
+    <target name="clean" description="Deletes the build directory">
+        <delete dir="${build.dir}"/>
+    </target>
+    <target name="dist.clean">
+        <delete dir="${dist.dir}"/>
+    </target>
+    <target name="clean.all" depends="clean, dist.clean"/>
+    <!-- ======================================================================= -->
+</project>
