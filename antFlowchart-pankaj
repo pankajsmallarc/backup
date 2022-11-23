@@ -1,0 +1,110 @@
+1.dist
+  1.1 dist.clean
+  1.2 dist.init
+      1.2.1 init  
+  //completed
+  1.3 jars
+      1.3.1 compile
+	        1.3.1.1 compile.init
+			        1.3.1.1.1 init  // completed
+	  1.3.2 jar.base
+	        1.3.2.1 jar.init
+			        1.3.2.1.1 compile.init
+					          1.3.2.1.1 init // completed
+					1.3.2.1.2 dist.init
+					          1.3.2.1.2.1 init // completed
+	  1.3.3 jar.cas
+	        1.3.3.1 jar.init
+			        1.3.3.1.1 compile.init
+					          1.3.3.1.1.1 init // completed
+					1.3.3.1.2 dist.init
+					          1.3.3.1.2.1 init // completed
+	  1.3.4 jar.ultimate
+	        1.3.4.1 jar.init
+			        1.3.4.1.1 compile.init
+					          1.3.4.1.1.1 init // completed
+					1.3.4.1.2 dist.init
+					          1.3.4.1.2.1 init // complet
+	  1.3.5 jar.jms
+	        1.3.5.1 jar.init
+			        1.3.5.1.1 compile.init
+					          1.3.5.1.1.1 init // completed
+					1.3.5.1.2 dist.init
+					          1.3.5.1.2.1 init // complet
+	  1.3.6 jar.gwmon
+	        1.3.6 jar.init
+			      1.3.6.1 compile.init
+					      1.3.6.1.1 init // completed
+				  1.3.6.2 dist.init
+					      1.3.6.2.1 init // complet
+	  1.3.7 jar.gw
+	        1.3.7.1 jar.init
+			        1.3.7.1.1 compile.init
+					          1.3.7.1.1.1 init // completed
+				    1.3.7.1.2 dist.init
+					          1.3.7.1.2.1 init // complet
+			1.3.7.2 compile
+			        1.3.7.2.1 compile.init
+					          1.3.7.2.1.1 init // completed
+	  1.3.8 jar.gw301
+	        1.3.8.1 jar.init
+			        1.3.8.1.1 compile.init
+					          1.3.8.1.1.1 init // completed
+					1.3.8.1.2 dist.init
+					          1.3.8.1.2.1 init  // completed
+	  1.3.9 jar.ndmutables
+	        1.3.9.1 jar.init
+			        1.3.9.1.1 compile.init
+					          1.3.9.1.1.1 init // completed
+				    1.3.9.1.2 dist.init
+					           1.3.9.1.2.1 init // complet
+  
+  1.4 ears
+      1.4.1 jar.1EJB
+	        1.4.1.1 jar.init
+			        1.4.1.1.1 compile.init
+					          1.4.1.1.1.1 init // completed
+				    1.4.1.1.2 dist.init
+					          1.3.9.1.2.1 init // complet
+	  
+	  1.4.2 jar.1NRT
+	        1.4.2.1 jar.init
+			        1.4.1.1.1 compile.init
+					          1.4.1.1.1.1 init // completed
+				    1.4.1.1.2 dist.init
+					          1.3.9.1.2.1 init // complet
+	  
+	  1.4.3 jar.2EJB
+	        1.4.3.1 jar.init
+			        1.4.3.1.1 compile.init
+					          1.4.3.1.1.1 init // completed
+				    1.4.3.1.2 dist.init
+					          1.4.3.1.2.1 init // complet
+	  
+	  1.4.4 jar.2NRT
+	        1.4.4.1 compile.init
+					         1.4.4.1.1 init // completed
+				    1.4.4.2 dist.init
+					         1.4.4.2.1 init // complet
+	  
+	  1.4.5 war.gw1 // completed
+	  1.4.6 war.gw2  // completed
+	  1.4.7 war.nrt1 // completed
+	  1.4.8 war.nrt2 // completed
+	  1.4.9 war.gwmon // completed
+	  1.4.10 ear.gw1 // completed
+	  1.4.11 ear.gw2 // completed
+	  1.4.12 ear.nrt1 // completed
+	  1.4.13 ear.nrt2 // completed
+	  1.4.14 ear.gwmon //completed
+  1.5 genProps
+      1.5.1 dist.init
+	        1.5.1.1 init
+	  1.5.2 prepareProps // completed
+	  1.5.3 prepareNRTProps // completed
+  1.6 dist.rules
+      1.6.1 dist.init // completed
+	        1.6.1.2 init // completed
+  1.7 dist.scripts
+      1.7.1 dist.init
+	        1.7.1.1 init // completed
