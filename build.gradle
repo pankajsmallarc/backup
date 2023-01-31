@@ -1,0 +1,172 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'jacoco'
+    id 'pmd'
+}
+
+group = projectGroup
+version = projectVersion
+description = projectDescription
+sourceCompatibility = projectJavaSource
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    maven { url "https://artifactory.us.smallarc.net/artifactory/Green" }
+    maven { url "https://artifactory.us.smallarc.net/artifactory/releases/" }
+}
+
+ext {
+    set('springCloudVersion', "2021.0.4")
+}
+
+dependencies {
+    implementation 'com.docusign:docusign-esign-java:3.18.0'
+    implementation 'com.jayway.jsonpath:json-path:2.7.0'
+    implementation 'com.smallarc.dxp:api-security-util:0.0.+'
+    implementation 'com.smallarc.dxp:dms-model:1.0.+'
+    implementation 'com.cma.filenet:schema:1.0.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws-secrets-manager-config:2.4.2'
+    
+    implementation 'com.amazonaws.secretsmanager:aws-secretsmanager-jdbc:1.+'
+
+    implementation 'org.apache.commons:commons-collections4:4.4'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.+'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'com.github.ben-manes.caffeine:caffeine'
+	implementation 'org.springframework:spring-jms:5.3.23'
+	implementation 'com.github.beanio:beanio:3.0.0.M1'
+	implementation 'com.ibm.mq:com.ibm.mq.allclient:9.3.1.0'
+
+	implementation 'javax.jms:jms:1.1'
+
+
+    implementation 'org.liquibase:liquibase-core'
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    //https://json-schema.org/implementations.html
+    implementation 'com.github.erosb:everit-json-schema:1.14.1'
+
+	// https://mvnrepository.com/artifact/net.javacrumbs.shedlock/shedlock-spring
+	implementation 'net.javacrumbs.shedlock:shedlock-spring:4.42.0'
+	implementation 'net.javacrumbs.shedlock:shedlock-provider-jdbc-template:4.42.0'
+	
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+    implementation 'com.docusign:docusign-esign-java:3.18.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.h2database:h2'
+    testImplementation 'com.google.code.bean-matchers:bean-matchers:0.14'
+	testImplementation 'org.mockito:mockito-inline:4.8.0'
+	testImplementation group: 'javax.jms', name: 'javax.jms-api', version: '2.0.1'
+	
+	implementation 'org.aspectj:aspectjweaver:1.9.19'
+	implementation 'org.aspectj:aspectjrt:1.9.19'
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+springBoot {
+    buildInfo()
+}
+
+pmd {
+    ignoreFailures = false
+    sourceSets = [sourceSets.main]
+    ruleSets = [
+            "java-basic",
+            "java-braces",
+            "java-clone",
+            "java-codesize",
+            "java-design",
+            "java-empty",
+            "java-finalizers",
+            "java-migrating",
+            "java-strictexception",
+            "java-strings",
+            "java-unnecessary",
+            "java-unusedcode"
+    ]
+}
+
+project.ext {
+    if (!project.hasProperty("archiveVersion")) {
+        archiveVersion = project.parent?.ext?.archiveVersion ?: 'LOCAL'
+    }
+    buildNumber = System.getenv('BUILD_NUMBER') ?: 'X'
+    archiveVersion = "${projectVersion}.${buildNumber}"
+    archiveName = "${projectName}-${archiveVersion}"
+    jarFileName = "${archiveName}.jar"
+    GIT_BRANCH = System.getenv('GIT_BRANCH') ?: 'develop'
+}
+
+bootJar {
+    launchScript()
+    archiveFileName = jarFileName
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.9
+            }
+        }
+    }
+}
+check.dependsOn jacocoTestCoverageVerification
+
+apply plugin: 'org.sonarqube'
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', rootProject.name
+        property 'sonar.projectDescription', rootProject.projectDescription
+        property 'sonar.junit.reportsPath', test.reports.junitXml.destination
+        property 'sonar.coverage.jacoco.xmlReportPaths', "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.sourceEncoding', 'UTF-8'
+        property 'sonar.host.url', 'https://sonar.us.smallarc.net/sonar'
+    }
+}
