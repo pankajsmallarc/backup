@@ -1,0 +1,57 @@
+ ##### Server Configs #####
+server.port=10011
+server.servlet.context-path=/enrollment
+
+##### Spring JPA #####
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+##### Spring API Docs #####
+springdoc.swagger-ui.disable-swagger-default-url=true
+springdoc.api-docs.enabled=false
+springdoc.swagger-ui.enabled=false
+springdoc.api.title=TME - Enrollment API
+springdoc.api.description=Provides endpoints to save and retrieve TM Enrollment progress
+
+##### DPA OAUTH CONFIG #####
+application.name=EnrollmentApi
+application.code=DXP
+
+#### caching properties #####
+cache.init.capacity=10
+cache.max.size=200
+cache.time-to-live.minutes=5
+
+##### Email Config #####
+mail.sender.address=donotreply@comerica.com
+custom.thread.pool=8
+
+##### TPA Config #####
+tpa.retentionDays.standard=762
+tpa.retentionDays.fraudpay=397
+tpa.retentionDays.cashmgtesstpre=397
+tpa.retentionDays.essentials=397
+tpa.retentionDays.venturecat=397
+tpa.retentionDays.mortgage=397
+tpa.retentionDays.estatements=397
+tpa.retentionDays.productCode=RTGS
+
+
+##### AAM API TrustStore #####
+server.ssl.trust-store=classpath:keystores/trustStore.jks
+
+##### Control Disbursment #####
+cd.sub.product.code=68
+cd.service.charge.code=33
+account.eligibility.hours=24
+
+##### MQ Config #####
+mq-sslCipherSuite=TLS_RSA_WITH_AES_256_CBC_SHA256
+application-event-queue-channel=CLIENT.TO.DXP
+dxp.mtsRequestQueue=DXP.MTS.ADDACCT.REQUEST
+dxp.mtsResponseQueue=DXP.MTS.ADDACCT.REPLY
+
+##SQS Config##
+cloud.aws.region.static=us-east-2
+cloud.aws.region.auto=false
+cloud.aws.stack.auto=false
+#spring.jms.listener.auto-startup=false
