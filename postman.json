@@ -1,0 +1,4593 @@
+{
+	"info": {
+		"_postman_id": "00c436be-c81a-4aa4-b457-13fa920b4323",
+		"name": "FlexyFeet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15715027"
+	},
+	"item": [
+		{
+			"name": "inventory",
+			"item": [
+				{
+					"name": "getInventory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/maintenance/inventory/list/{{companyId}}/1/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"maintenance",
+								"inventory",
+								"list",
+								"{{companyId}}",
+								"1",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInventoryById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/maintenance/inventory/get/6453f70da7153ecb282b0760",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"maintenance",
+								"inventory",
+								"get",
+								"6453f70da7153ecb282b0760"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inventorySearch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perPage\":1,\r\n    \"page\":10,\r\n    \"companyId\":\"639b75b6e6f019aed6c2714f\",\r\n    \"searchText\":\"SR456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/maintenance/inventory/search",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"maintenance",
+								"inventory",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createInventory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pankaj@smallarc.com\",\r\n    \"password\": \"pankaj@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/maintenance/inventory/list/639b75b6e6f019aed6c2714f/1/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"maintenance",
+								"inventory",
+								"list",
+								"639b75b6e6f019aed6c2714f",
+								"1",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addInventory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/inspection/schedule/overdue/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"inspection",
+								"schedule",
+								"overdue",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "drivers",
+			"item": [
+				{
+					"name": "driver_list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/drivers/driver_list/639b75b6e6f019aed6c2714f/1/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"drivers",
+								"driver_list",
+								"639b75b6e6f019aed6c2714f",
+								"1",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driver_get",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/drivers/driver_get/645547c09711a2e342c56e61",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"drivers",
+								"driver_get",
+								"645547c09711a2e342c56e61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/drivers/active/{{companyId}}/63f3ae5c82606ec65a487c31",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"drivers",
+								"active",
+								"{{companyId}}",
+								"63f3ae5c82606ec65a487c31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invite",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/drivers/invite/642c6647d20106dbb63888c8",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"drivers",
+								"invite",
+								"642c6647d20106dbb63888c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-last-sync-time Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"companyId\": {{companyId_smallArc}},\r\n      \"createdBy\": \"63c6b5c4adae9a872a974899\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/drivers/sync-fleetspin",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"drivers",
+								"sync-fleetspin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vehiclesRecall",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehiclesRecall/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehiclesRecall",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recall-by-vehicle",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehiclesRecall/recall-by-vehicle/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehiclesRecall",
+								"recall-by-vehicle",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recall-badge-count",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehiclesRecall/recall-badge-count/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehiclesRecall",
+								"recall-badge-count",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vehiclesTypes",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehicleTypes/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehicleTypes",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/asset-types/list",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"asset-types",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehiclesTypes/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehiclesTypes",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vehicles",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehicles/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehicles",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehicles/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehicles",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/vehicles/active/{{companyId}}/639b75b6e6f019aed6c2714d",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"vehicles",
+								"active",
+								"{{companyId}}",
+								"639b75b6e6f019aed6c2714d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "units",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/units/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"units",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/units/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"units",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/units/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"units",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "utility",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/utility/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"utility",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/utility/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"utility",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/utility/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"utility",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "industry",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/industry/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"industry",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/industry/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"industry",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/industry/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"industry",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "modules",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/modules/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"modules",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/modules/list/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"modules",
+								"list",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "partners",
+			"item": [
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/modules/get_id/{{companyId}}/10/1",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"modules",
+								"get_id",
+								"{{companyId}}",
+								"10",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/maintenance/part-category/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"maintenance",
+								"part-category",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "inspection",
+			"item": [
+				{
+					"name": "inspectionForm",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionForm/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionForm",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "active",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionForm/active/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionForm",
+										"active",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionForm/list//{{companyId}}/10",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionForm",
+										"list",
+										"",
+										"{{companyId}}",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "inspectionSchedule",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/details/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"details",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "download-report",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/download-report/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"download-report",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "completed",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/completed/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"completed",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "overdue",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/overdue/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"overdue",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/inspection/inspectionSchedule/list//{{companyId}}/10",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"inspection",
+										"inspectionSchedule",
+										"list",
+										"",
+										"{{companyId}}",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "form-cards",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/form-cards/list//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"form-cards",
+								"list",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/form-cards/get_id//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"form-cards",
+								"get_id",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/form-cards/get_service_task//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"form-cards",
+								"get_service_task",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "forms",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/forms/list//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"forms",
+								"list",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/forms/get_id//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"forms",
+								"get_id",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sample",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/forms/get-sample//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"forms",
+								"get-sample",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-category",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/forms/get-by-category//{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"forms",
+								"get-by-category",
+								"",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sharedModule",
+			"item": [
+				{
+					"name": "get_timezones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/sharedModule/timezones/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"sharedModule",
+								"timezones",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user-auth",
+			"item": [
+				{
+					"name": "user-auth/email-verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"radhamohan.rajput@gmail.com\",\r\n        \"verificationCode\": 1234\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/email-verification",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"email-verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-auth/forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"radhamohan.rajput@gmail.com\",\r\n        \"verificationCode\": 1234\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/forgot-password",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-auth/reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"radhamohan.rajput@gmail.com\",\r\n        \"verificationCode\": 1234\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/forgot-password",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-auth/change-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"radhamohan.rajput@gmail.com\",\r\n        \"verificationCode\": 1234\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/forgot-password",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Radha\",\r\n    \"lastName\": \"Mohan\",\r\n    \"mobilePhone\": \"+1973123456\",\r\n    \"password\": \"Test\",\r\n    \"email\": \"radhamohan123@gmail.com\",\r\n    \"country\": \"0\",\r\n    \"companyName\": \"SmallArc. Inc\",\r\n    \"fleetSize\": 10,\r\n    \"industry\": \"Training\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/sign-up",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pankaj@smallarc.com\",\r\n    \"password\": \"pankaj@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/user-auth/login",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"user-auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "get-last-sync-time",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get-last-sync-time/{{companyId_smallArc}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get-last-sync-time",
+								"{{companyId_smallArc}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-active-modules",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"companyId\":\"639b75b6e6f019aed6c2714f\",\r\n    \"moduleCode\":\"INS\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get-active-modules",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get-active-modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCompanyById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"639b75b6e6f019aed6c2714f\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current-billing",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"639b75b6e6f019aed6c2714f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/current-billing",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"current-billing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "billing-history",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"639b75b6e6f019aed6c2714f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/billing-history",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"billing-history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"639b75b6e6f019aed6c2714f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/list/10/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"list",
+								"10",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-count",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"639b75b6e6f019aed6c2714f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get-count",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get-count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-details",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"639b75b6e6f019aed6c2714f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get-details",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get-details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"639b75b6e6f019aed6c2714f\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/get",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inspection",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/inspection/schedule/completed/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"inspection",
+								"schedule",
+								"completed",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "overdue",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/company/inspection/schedule/overdue/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"company",
+								"inspection",
+								"schedule",
+								"overdue",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "UersList",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/users/list/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"users",
+								"list",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/active",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/users/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"users",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mechanic",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/users/mechanic/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"users",
+								"mechanic",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/users/get/639b75b6e6f019aed6c2714d",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"users",
+								"get",
+								"639b75b6e6f019aed6c2714d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/users/delete/",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"users",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customers",
+			"item": [
+				{
+					"name": "GetCustomers",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/customers/list/{{companyId}}/2/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"customers",
+								"list",
+								"{{companyId}}",
+								"2",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/customers/get/63fe23fb161f63566b810308",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"customers",
+								"get",
+								"63fe23fb161f63566b810308"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerIntegrations",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/customers/integrations/63fe23fb161f63566b810308",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"customers",
+								"integrations",
+								"63fe23fb161f63566b810308"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActiveCustomers",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/customers/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"customers",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teams",
+			"item": [
+				{
+					"name": "GetTeams",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/teams/list/{{companyId}}/2/10",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"teams",
+								"list",
+								"{{companyId}}",
+								"2",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTeamById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/teams/get/63fccb1d161f63566b80ffd9",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"teams",
+								"get",
+								"63fccb1d161f63566b80ffd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetActiveTeams",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{fleetfixyUrl}}/teams/active/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"teams",
+								"active",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "app",
+			"item": [
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/defect/list/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"defect",
+								"list",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{fleetfixyUrl}}/defect/details/{{companyId}}",
+							"host": [
+								"{{fleetfixyUrl}}"
+							],
+							"path": [
+								"defect",
+								"details",
+								"{{companyId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "maintenance",
+			"item": [
+				{
+					"name": "maintenanceVendor",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceVendor/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceVendor",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceVendor/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceVendor",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenancePmService",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenancePmService/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenancePmService",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenancePmService/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenancePmService",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenancePmServicePackage",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenancePmServicePackage/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenancePmServicePackage",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenancePmServicePackage/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenancePmServicePackage",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenancePmServiceSchedule",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenancePmServiceSchedule/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenancePmServiceSchedule",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenanceServiceTask",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceServiceTask/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceServiceTask",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceServiceTask/get_id//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceServiceTask",
+										"get_id",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_service_task",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceServiceTask/get_service_task//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceServiceTask",
+										"get_service_task",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenanceInventory",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceInventory/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceInventory",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceInventory/get_id//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceInventory",
+										"get_id",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_all",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceInventory/get_all//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceInventory",
+										"get_all",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenancePartCategory",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenance/part-category/get/64554a339711a2e342c57102",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenance",
+										"part-category",
+										"get",
+										"64554a339711a2e342c57102"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePartCategory",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Luminuos Battery\",\r\n    \"company\": \"645547c09711a2e342c56e64\",\r\n    \"createdBy\": \"645547c09711a2e342c56e61\",\r\n    \"updatedBy\": \"645547c09711a2e342c56e61\",\r\n    \"isDeleted\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenance/part-category/create",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenance",
+										"part-category",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenance/part-category/list/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenance",
+										"part-category",
+										"list",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenanceWorkOrder",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/details/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"details",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "completed",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/completed/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"completed",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "overdue",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/overdue/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"overdue",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "download-invoice",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/download-invoice/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"download-invoice",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceWorkOrder/list//{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceWorkOrder",
+										"list",
+										"",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "maintenanceDefect",
+					"item": [
+						{
+							"name": "get_id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceDefect/get_id/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceDefect",
+										"get_id",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceDefect/details/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceDefect",
+										"details",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "completed",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceDefect/completed/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceDefect",
+										"completed",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "overdue",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceDefect/overdue/{{companyId}}",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceDefect",
+										"overdue",
+										"{{companyId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/maintenanceDefect/list//{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"maintenanceDefect",
+										"list",
+										"",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "service-tasks",
+					"item": [
+						{
+							"name": "get_id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/service-tasks/get_id/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"service-tasks",
+										"get_id",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/service-tasks/list/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"service-tasks",
+										"list",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pm-service",
+					"item": [
+						{
+							"name": "get_id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/pm-service/get_id/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"pm-service",
+										"get_id",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/pm-service/list/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"pm-service",
+										"list",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pm-service-package",
+					"item": [
+						{
+							"name": "get_id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{fleetfixyUrl}}/pm-service-package/get_id/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"pm-service-package",
+										"get_id",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"_id\":\"64559d9be40d95a32a8d384e\",\r\n\"perPage\":\"10\",\r\n\"page\":\"1\" }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{fleetfixyUrl}}/pm-service-package/list/{{companyId}}/10/1",
+									"host": [
+										"{{fleetfixyUrl}}"
+									],
+									"path": [
+										"pm-service-package",
+										"list",
+										"{{companyId}}",
+										"10",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "access-token/get",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhZGhhbW9oYW4ucmFqcHV0QGdtYWlsLmNvbSIsInVzZXJJZCI6IjYzYzhiOTgzOTdhOTgzZGY5YjgyMTA1NCIsImlhdCI6MTY3NDMyMDI1OCwiZXhwIjoxNjc2OTEyMjU4fQ.Tv7yCEkKVRx0zWaJt1S04erj65MnhmAyuyabolakzBU\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{fleetfixyUrl}}/access-token/get",
+					"host": [
+						"{{fleetfixyUrl}}"
+					],
+					"path": [
+						"access-token",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
